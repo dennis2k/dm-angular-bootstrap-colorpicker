@@ -540,6 +540,8 @@ angular.module('colorpicker.module', [])
           var hideColorpickerTemplate = function() {
             if (colorpickerTemplate.hasClass('colorpicker-visible')) {
               colorpickerTemplate.removeClass('colorpicker-visible');
+              if(angular.isDefined(attrs.onClose))
+                $scope.$eval(attrs.onClose)
               emitEvent('colorpicker-closed');
               // unregister the global mousedown event
               $document.off('mousedown', documentMousedownHandler);
